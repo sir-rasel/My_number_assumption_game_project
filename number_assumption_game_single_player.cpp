@@ -104,7 +104,7 @@ void display(PlayerInterface player,DefaultPlayer player1){
 
 void clear_screen(){
     system("@cls||clear");
-    cout<< "\t\t.....Game Is On....."<<endl;
+    cout<< "\t\t..... Get 5 points t win ....."<<endl;
 }
 
 int main(){
