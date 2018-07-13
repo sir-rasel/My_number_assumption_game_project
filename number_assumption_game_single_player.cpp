@@ -21,6 +21,7 @@ public:
         score = 0;
     }
     void setName(){
+        cout<< "Enter player Name: ";
         getline(cin,name);
     }
     string getName(){
@@ -35,14 +36,11 @@ public:
 };
 
 class RandomNumberGenarator{
+protected:
     int randomNumber;
 public:
     RandomNumberGenarator(){
         randomNumber = 0;
-    }
-    RandomNumberGenarator(time_t t){
-        srand(time(&t));
-        randomNumber = (rand()%6)+1;
     }
     void setRandomNumber(time_t t){
         srand(time(&t));
@@ -50,6 +48,13 @@ public:
     }
     int getRandomNumber(){
         return randomNumber;
+    }
+};
+
+class DefaultPlayer:public PlayerInterface,public RandomNumberGenarator{
+public:
+    void displayGuessingNumber(){
+        cout<< "Default player Input: "<<randomNumber<<endl;
     }
 };
 
@@ -65,6 +70,26 @@ int WinCheck(PlayerInterface player1,PlayerInterface player2){
     else return 0;
 }
 
-void display(){
+void display(PlayerInterface player,DefaultPlayer player1){
+    for(int i=0;i<20;i++){
+        cout<< "/";
+    }
+    cout<<endl;
+    cout<< "//   "<< player.getName()<< "Score is : "<<player.getScore();
+    cout << "\t" << player1.getName()<< "Score is : "<<player1.getScore()<< "   //";
+    cout<<endl;
+    for(int i=0;i<20;i++){
+        cout<< "/";
+    }
+}
 
+int main(){
+    PlayerInterface player;
+    DefaultPlayer pcPlayer;
+    player.setName();
+    pcPlayer.setName();
+    while(1){
+        display(player)
+    }
+    return 0;
 }
